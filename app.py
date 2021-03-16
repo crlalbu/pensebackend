@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 import pymongo
 
 import db
@@ -18,32 +18,43 @@ def teste():
     #frase = client.pensedatabase.frases.find_one()
     frases = db.client.pensedatabase.frases.find().limit(10)
     #$teste = db.user_collection.find().limit(1)
-    retorno = []
+    retorno = {}
     for frase in frases:
-        retorno.append(frase['frase'])
+        retorno = {"autor": frase['autor'], "frase": frase['frase']}
+            
+        
+    return jsonify(retorno)
 
-@app.route('/author/<string:name')
+@app.route('/author/<string:name>')
 def getAuthor(name):
-    pass
+    retorno = []
+    query = {"autor": name + "/"}
+    print(query)
+    frases  = db.client.pensedatabase.frases.find(query).sort("_id", pymongo.DESCENDING).limit(10)
+    
+    for frase in frases:
+        retorno.append({"frase": frase['frase']})
+        
 
-@app.route('/myfrases', 'POST')
-def favFrase():
-    pass
+    return jsonify(retorno)
 
-@app.route('favoriteFrases')
-def getFavoriteFrases():
-    pass
+# @app.route('/myfrases', 'POST')
+# def favFrase():
+#     pass
 
-def get moreScored():
-    pass
-    # for x in teste:
-def get myFavorites():
-    pass
+# @app.route('favoriteFrases')
+# def getFavoriteFrases():
+#     pass
 
-def get myAuthors():
-    pass
-    #return f"{retorno}"
+# def get moreScored():
+#     pass
+#     # for x in teste:
+# def get myFavorites():
+#     pass
 
+# def get myAuthors():
+#     pass
+#     #return f"{retorno}"
 
 
 if __name__ == '__main__':
