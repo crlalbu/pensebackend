@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
 from bson import ObjectId
+from flask_jwt import JWT, jwt_required
 import pymongo
+
+from security import authenticate, identity
 
 from db import Config
 
@@ -9,11 +12,14 @@ import db
 
 
 app = Flask(__name__)
+app.secret_key = "8Tb1JM2-lF',qM$.GVl^eaQ8UakLgAhp*#i8O;kG~$&i3IW!7r\]@J6z/j8U@CY"
 api = Api(app)
+
+jwt = JWT(app, authenticate, identity)  #/auth
 
 class Frases(Resource):
     
-
+    @jwt_required()
     def get(self, name):
         retorno = []
         db = pymongo.MongoClient(Config.CONNECTION_STRING)

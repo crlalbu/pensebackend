@@ -1,11 +1,30 @@
+@hostname = localhost
+@port = 5000
+@host = {{hostname}}:{{port}}
+@Content-Type = application/json
+
+### Authentication
+# @name login
+
+
+POST http://{{host}}/auth HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "bob",
+    "password": "asdf"
+}
+###
+@jwtoken = {{login.response.body.access_token}}
 
 ### Listar frases
-GET http://localhost:5000/frases
+#GET http://{{host}}/frases
 
 
 ### Listar frases por autor
 @autor=ian_fleming
 GET http://localhost:5000/frases/{{autor}}
+Authorization:  JWT {{jwtoken}}
 
 
 ### Listar minhas frases favoritas
@@ -13,9 +32,9 @@ GET http://localhost:5000/favoritas
 
 
 ### Salvar favoritas
-POST GET http://localhost:5000/savef
-Content-Type: application/json
-{
-    "autor" : "autor",
-    "frase" : "frase"
-}
+# POST GET http://localhost:5000/save
+# Content-Type: application/json
+# {
+#     "autor" : "autor",
+#     "frase" : "frase"
+# }
