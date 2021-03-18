@@ -5,6 +5,7 @@ from flask_jwt import JWT, jwt_required
 import pymongo
 
 from security import authenticate, identity
+from user import UserRegister
 
 from db import Config
 
@@ -38,56 +39,7 @@ class Frases(Resource):
         return {'autor': name, 'frases': retorno}
 
 api.add_resource(Frases, '/frases/<string:name>')
+api.add_resource(UserRegister, '/register')
 
 app.run(port=5000, debug=True)
-# @app.route('/')
-# def flask_mongodb_altas():
-#     return "flask mongodb altas!"
-
-# @app.route('/teste')
-# def teste():
-    
-#     frases = db.client.pensedatabase.frases.find().limit(10)
-    
-#     retorno = {}
-#     for frase in frases:
-        
-#         retorno = {"autor": frase['autor'], "frase": frase['frase']}
-            
-        
-#     return retorno
-
-# @app.route('/author/<string:name>')
-# def getAuthor(name):
-#     retorno = []
-#     query = {"autor": name + "/"}
-#     print(query)
-#     frases  = db.client.pensedatabase.frases.find(query).sort("_id", pymongo.DESCENDING).limit(10)
-    
-#     for frase in frases:
-#         retorno.append({"frase": frase['frase']})
-        
-
-#     return jsonify(retorno)
-
-# @app.route('/myfrases', 'POST')
-# def favFrase():
-#     pass
-
-# @app.route('favoriteFrases')
-# def getFavoriteFrases():
-#     pass
-
-# def get moreScored():
-#     pass
-#     # for x in teste:
-# def get myFavorites():
-#     pass
-
-# def get myAuthors():
-#     pass
-#     #return f"{retorno}"
-
-
-# if __name__ == '__main__':
-#     app.run(port=8000)
+pp.run(port=8000)

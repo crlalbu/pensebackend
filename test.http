@@ -3,6 +3,17 @@
 @host = {{hostname}}:{{port}}
 @Content-Type = application/json
 
+
+POST http://{{host}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "carlos",
+    "password": "asdf"
+}
+
+
+
 ### Authentication
 # @name login
 
@@ -11,7 +22,7 @@ POST http://{{host}}/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "bob",
+    "username": "carlos",
     "password": "asdf"
 }
 ###
