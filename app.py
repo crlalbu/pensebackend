@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
+from bson import ObjectId
 import pymongo
 
 from db import Config
@@ -20,19 +21,19 @@ class Frases(Resource):
         
         query = {"autor": name + "/"}
     
-        frases  = db.pensedatabase.frases.find(query).sort("_id", pymongo.DESCENDING).limit(100)
+        frases  = db.pensedatabase.frasesnovas.find(query).sort("_id", pymongo.DESCENDING).limit(100)
         #frases = db.pensedatabase.frases.find().limit(10)
 
         for frase in frases:
-            retorno.append({"frase": frase['frase']})
+            retorno.append({"frase": frase['frase'], "_id": str(frase['_id'])})
 
         db.close()
-
-        return {'auto': name, 'frases': retorno}
+        
+        return {'autor': name, 'frases': retorno}
 
 api.add_resource(Frases, '/frases/<string:name>')
 
-app.run(port=5000)
+app.run(port=5000, debug=True)
 # @app.route('/')
 # def flask_mongodb_altas():
 #     return "flask mongodb altas!"

@@ -1,3 +1,21 @@
 
+### Listar frases
+GET http://localhost:5000/frases
 
-GET http://localhost:5000/frases/iginio_tarchetti
+
+### Listar frases por autor
+@autor=ian_fleming
+GET http://localhost:5000/frases/{{autor}}
+
+
+### Listar minhas frases favoritas
+GET http://localhost:5000/favoritas
+
+
+### Salvar favoritas
+POST GET http://localhost:5000/savef
+Content-Type: application/json
+{
+    "autor" : "autor",
+    "frase" : "frase"
+}
