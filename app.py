@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import  Api
 from bson import ObjectId
 from flask_jwt import JWT
-#import pymongo
+import pymongo
 
 from security import authenticate, identity
 from user import UserRegister
@@ -24,5 +24,5 @@ jwt = JWT(app, authenticate, identity)  #/auth
 api.add_resource(Frases, '/frases/<string:name>')
 api.add_resource(UserRegister, '/register')
 
-app.run(port=5000, debug=True)
-pp.run(port=8000)
+app.run()
+
