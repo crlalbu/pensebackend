@@ -1,6 +1,7 @@
 @hostname = localhost
 @port = 5000
 @host = {{hostname}}:{{port}}
+#@host = "pensebackend.herokuapp.com":"443"
 @Content-Type = application/json
 
 
@@ -33,7 +34,7 @@ Content-Type: application/json
 
 
 ### Listar frases por autor
-@autor=ian_fleming
+@autor=fernando_pessoa
 GET http://localhost:5000/frases/{{autor}}
 Authorization:  JWT {{jwtoken}}
 

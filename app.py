@@ -5,10 +5,10 @@ from flask_jwt import JWT
 import pymongo
 
 from security import authenticate, identity
-from user import UserRegister
-from frases import Frases
+from resources.user import UserRegister
+from resources.frases import Frases
 
-from db import Config
+
 
 import db
 
@@ -24,5 +24,7 @@ jwt = JWT(app, authenticate, identity)  #/auth
 api.add_resource(Frases, '/frases/<string:name>')
 api.add_resource(UserRegister, '/register')
 
-app.run()
+if __name__ == '__main__':
+    from db import Config
+    app.run()
 
