@@ -1,6 +1,9 @@
 from flask_pymongo import pymongo
 
 
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 class Config():
 
     
