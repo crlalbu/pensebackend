@@ -26,5 +26,5 @@ api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
     from db import Config
-    app.run()
+    app.run(host="0.0.0.0")
 
