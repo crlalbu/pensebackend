@@ -10,7 +10,7 @@ from resources.frases import Frases
 
 
 
-import db
+#import db
 
 
 app = Flask(__name__)
@@ -26,6 +26,6 @@ api.add_resource(Frases, '/frases/<string:name>')
 api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
-    from db import Config
+    #from db import Config
     app.run()
 
